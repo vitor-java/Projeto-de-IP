@@ -11,7 +11,7 @@ python3 -m venv venv
 
 
 Sete o virtual criado ou já existente para ser usado pelo projeto:
-Substitua "<nome>" pelo nome do virtual environment. 
+Substitua "&lt;nome&gt;" pelo nome do virtual environment. 
 Caso tenha sido criado na etapa anterior, substitua por "venv".
 
 ```shell
