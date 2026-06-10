@@ -20,7 +20,7 @@ source <nome>/bin/activate
 
 Comando, caso esteja usando Windows:
 ```shell
-.\venv\Scripts\Activate.ps1
+.\<nome>\Scripts\Activate.ps1
 ```
 
 4. Instale o pygame:
