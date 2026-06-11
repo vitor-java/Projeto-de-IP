@@ -3,7 +3,7 @@ import sys, os
 
 from typing import List
 
-SCREENRECT = pg.Rect(0, 0, 1280, 720)
+SCREENRECT = pg.Rect(0, 0, 1056, 790)
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 
@@ -13,7 +13,7 @@ def load_image(file):
         surface = pg.image.load(file)
     except pg.error:
         raise SystemExit(f'Erro ao carregar "{file}" {pg.get_error()}')
-    return surface.convert()
+    return surface.convert_alpha()
 
 class Jogo:
 
@@ -26,7 +26,7 @@ class Jogo:
 
         cenario_img = load_image("cenario.png")
         self.background = cenario_img.convert()
-        self.tela.blit(self.background, (0, 0)) # o background não está centralizado, por algum motivo
+        self.tela.blit(self.background, (0, 0)) # centralizei essa poha
         pg.display.flip()
     
     def processar_eventos(self):
@@ -35,10 +35,12 @@ class Jogo:
                 self.rodando = False
     
     def executar(self):
-        ultimo_movimento = 0
+        proximo_movimento = 0
         cooldown_movimentos = 200
+        cooldown_movimentos_diagonal = 282.8
 
-        img = load_image("player1.gif")
+        img = load_image("chaves1.png")
+        img = pg.transform.smoothscale(img, (128, 146))
         Player.images = [img, pg.transform.flip(img, 1, 0)]
 
         all = pg.sprite.RenderUpdates()
@@ -50,21 +52,27 @@ class Jogo:
 
             tempo_atual = pg.time.get_ticks()
 
-            if (tempo_atual - ultimo_movimento >= cooldown_movimentos):
+            if (tempo_atual >= proximo_movimento):
+
 
                 keystate = pg.key.get_pressed()
 
-            # direcao vertical
+                # direcao vertical
+                # desse jeito cancela caso os dois sejam apertados ao mesmo tempo
+                # roubei a ideia do codigo de exemplo aliens.py
                 direcao_v = keystate[pg.K_DOWN] - keystate[pg.K_UP]
 
-            # direcao horizontal
+                # direcao horizontal
                 direcao_h = keystate[pg.K_RIGHT] - keystate[pg.K_LEFT]
 
+                diagonal = direcao_h != 0 and direcao_v != 0
+
+                if (diagonal) :
+                    proximo_movimento = tempo_atual + cooldown_movimentos_diagonal
+                elif direcao_v != 0 or direcao_h != 0: # se não for diagonal, verifica pelo menos se moveu antes de setar o cooldown
+                    proximo_movimento = tempo_atual + cooldown_movimentos
 
                 player.move(direcao_v, direcao_h)
-
-                if direcao_h != 0 or direcao_v != 0:
-                    ultimo_movimento = tempo_atual
 
             # limpa os sprites da tela
             all.clear(self.tela, self.background)
@@ -89,7 +97,8 @@ class Player(pg.sprite.Sprite):
     def __init__(self, *groups):
         pg.sprite.Sprite.__init__(self, *groups)
         self.image = self.images[0]
-        self.rect = SCREENRECT
+        self.rect = self.image.get_rect() # pelo visto, isso é o retangulo do sprite do jogador, tipo uma hitbox
+        self.rect.center = SCREENRECT.center # player spawna no meio
         self.reloading = 0
         self.facing = -1
 
@@ -97,10 +106,9 @@ class Player(pg.sprite.Sprite):
         if direcao_h:
             self.facing = direcao_h
 
-        self.rect.move_ip(300 * direcao_h, 300 * direcao_v)
+        self.rect.move_ip(96 * direcao_h, 96 * direcao_v)
 
-        self.rect.clamp(SCREENRECT) # deveria colidir no screenrect, mas não ta pegando
-        # provavelmente o retangulo do screenrect tá maior do que deveria ser
+        self.rect = self.rect.clamp(SCREENRECT)
 
 
         if direcao_h < 0:
