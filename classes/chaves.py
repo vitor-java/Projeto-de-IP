@@ -3,7 +3,7 @@ import sys, os
 
 from typing import List
 
-SCREENRECT = pg.Rect(0, 0, 1056, 790)
+SCREENRECT = pg.Rect(0, 0, 980, 770)
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 
@@ -40,7 +40,7 @@ class Jogo:
         cooldown_movimentos_diagonal = 282.8
 
         img = load_image("chaves1.png")
-        img = pg.transform.smoothscale(img, (128, 146))
+        img = pg.transform.smoothscale(img, (70, 140))
         Player.images = [img, pg.transform.flip(img, 1, 0)]
 
         all = pg.sprite.RenderUpdates()
@@ -98,7 +98,10 @@ class Player(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, *groups)
         self.image = self.images[0]
         self.rect = self.image.get_rect() # pelo visto, isso é o retangulo do sprite do jogador, tipo uma hitbox
-        self.rect.center = SCREENRECT.center # player spawna no meio
+        self.rect.center = (525, 490) # player spawna no meio
+
+        # posição inicial da matriz que mandei no zap: 
+
         self.reloading = 0
         self.facing = -1
 
@@ -106,7 +109,7 @@ class Player(pg.sprite.Sprite):
         if direcao_h:
             self.facing = direcao_h
 
-        self.rect.move_ip(96 * direcao_h, 96 * direcao_v)
+        self.rect.move_ip(70 * direcao_h, 70 * direcao_v)
 
         self.rect = self.rect.clamp(SCREENRECT)
 
