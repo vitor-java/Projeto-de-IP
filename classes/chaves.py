@@ -87,18 +87,23 @@ class Jogo:
         pg.quit()
         sys.exit()
 
-
+def get_posicao_de_spawn(pos_x, pos_y): # se baseie na matriz enviada no zap
+    pos_x *= 70
+    pos_x += 35
+    pos_y *= 70
+    return (pos_x, pos_y)
 
 class Player(pg.sprite.Sprite):
 
     bounce = 24
     images: List[pg.Surface] = []
 
+
     def __init__(self, *groups):
         pg.sprite.Sprite.__init__(self, *groups)
         self.image = self.images[0]
         self.rect = self.image.get_rect() # pelo visto, isso é o retangulo do sprite do jogador, tipo uma hitbox
-        self.rect.center = (525, 490) # player spawna no meio
+        self.rect.center = get_posicao_de_spawn(7, 7) # player spawna aqui
 
         self.reloading = 0
         self.facing = -1
