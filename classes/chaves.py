@@ -15,6 +15,10 @@ def load_image(file):
         raise SystemExit(f'Erro ao carregar "{file}" {pg.get_error()}')
     return surface.convert_alpha()
 
+def carregar_sprite (nome, largura = 70, altura = 140) :
+    img = pg.transform.scale(load_image(nome), (largura, altura))
+    return img
+
 class Jogo:
 
     def __init__(self):
@@ -37,11 +41,14 @@ class Jogo:
     def executar(self):
         proximo_movimento = 0
         cooldown_movimentos = 200
-        cooldown_movimentos_diagonal = 282.8
+        cooldown_movimentos_diagonal = 282.8 * 2
 
-        img = load_image("chaves1.png")
-        img = pg.transform.smoothscale(img, (70, 140))
-        Player.images = [img, pg.transform.flip(img, 1, 0)]
+
+        Player.images = [carregar_sprite("chaves_parado.png"),
+                         carregar_sprite("chaves_baixo_1.png"),
+                         carregar_sprite("chaves_baixo_2.png"),
+                         carregar_sprite("chaves_baixo_3.png"),
+                         carregar_sprite("chaves_baixo_4.png")]
 
         all = pg.sprite.RenderUpdates()
 
@@ -74,6 +81,27 @@ class Jogo:
 
                 player.move(direcao_v, direcao_h)
 
+            if player.andando :
+
+                if tempo_atual >= player.proximo_frame:
+
+                    player.proximo_frame = tempo_atual + cooldown_movimentos/2
+
+                    if player.frame == 7:
+                        player.frame = 1 # 8 volta pro 1
+                    else :
+                        player.frame += 1 # 1, 2, 3, 4, 3, 2, 1
+
+                    if (player.frame > 4) :
+                        frame = 8 - player.frame
+                    else :
+                        frame = player.frame
+
+
+                    player.image = player.images[frame]
+
+                player.atualizar_movimento()
+
             # limpa os sprites da tela
             all.clear(self.tela, self.background)
 
@@ -87,7 +115,7 @@ class Jogo:
         pg.quit()
         sys.exit()
 
-def get_posicao_de_spawn(pos_x, pos_y): # se baseie na matriz enviada no zap
+def get_posicao_na_matriz(pos_x, pos_y): # se baseie na matriz enviada no zap
     pos_x *= 70
     pos_x += 35
     pos_y *= 70
@@ -98,28 +126,57 @@ class Player(pg.sprite.Sprite):
     bounce = 24
     images: List[pg.Surface] = []
 
-
     def __init__(self, *groups):
         pg.sprite.Sprite.__init__(self, *groups)
         self.image = self.images[0]
         self.rect = self.image.get_rect() # pelo visto, isso é o retangulo do sprite do jogador, tipo uma hitbox
-        self.rect.center = get_posicao_de_spawn(7, 7) # player spawna aqui
+        self.rect.center = get_posicao_na_matriz(7, 7) # player spawna aqui
+
+        self.andando = False
+        self.proxima_pos = (0, 0)
+        self.proximo_frame = 0
+        self.frame = 0
 
         self.reloading = 0
         self.facing = -1
 
     def move(self, direcao_v, direcao_h):
-        if direcao_h:
-            self.facing = direcao_h
+        if not self.andando :
+            suposta_prox_pos = (self.rect.centerx + 70 * direcao_h, self.rect.centery + 70 * direcao_v)
+            proximo_rect = self.rect.copy()
+            proximo_rect.center = suposta_prox_pos
+            if (SCREENRECT.contains(proximo_rect)) : # impede que saia da tela
+              self.proxima_pos = suposta_prox_pos
+              self.andando = True
 
-        self.rect.move_ip(70 * direcao_h, 70 * direcao_v)
+    def atualizar_movimento(self): # só pra animação isso aq
+
+        if (not self.andando) :
+            return
+
+        velocidade = 2
+        proxima_pos_x = self.proxima_pos[0]
+        proxima_pos_y = self.proxima_pos[1]
+
+        vx = 0
+        vy = 0
+
+        if (self.rect.centerx < proxima_pos_x) :
+            vx = 1
+        elif (self.rect.centerx > proxima_pos_x) :
+            vx = -1
+
+        if (self.rect.centery < proxima_pos_y) :
+            vy = 1
+        elif (self.rect.centery > proxima_pos_y) :
+            vy = -1
+
+        self.rect.move_ip(vx * velocidade, vy * velocidade)
 
         self.rect = self.rect.clamp(SCREENRECT)
 
-
-        if direcao_h < 0:
+        if (self.rect.center == self.proxima_pos) :
+            self.andando = False
             self.image = self.images[0]
-        elif direcao_h > 0:
-            self.image = self.images[1]
 
 
