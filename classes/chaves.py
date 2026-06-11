@@ -100,8 +100,6 @@ class Player(pg.sprite.Sprite):
         self.rect = self.image.get_rect() # pelo visto, isso é o retangulo do sprite do jogador, tipo uma hitbox
         self.rect.center = (525, 490) # player spawna no meio
 
-        # posição inicial da matriz que mandei no zap: 
-
         self.reloading = 0
         self.facing = -1
 
