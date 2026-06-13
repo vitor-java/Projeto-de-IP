@@ -7,6 +7,20 @@ SCREENRECT = pg.Rect(0, 0, 980, 770)
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 
+cenarios = {
+    0: {
+        (10, 11), (10, 12), (9, 13), (8, 13), (7, 13),
+        (6, 13), (5, 13), (4, 12), (4, 11), (4, 10),
+        (3, 10), (2, 9), (2, 8), (2, 6), (2, 7),
+        (4, 5), (5, 5), (6, 5), (6, 6), (7, 5),
+        (7, 6), (6, 4), (7, 3), (8, 3), (6, 3),
+        (5, 3), (4, 3), (3, 3), (2, 3), (2, 5),
+        (3, 4), (1, "*"), ("*", 1)
+    }
+}
+# chave: id do cenário, por exemplo, o primeiro é '0'.
+# valor: um set (lista sem ordem) contendo as posições com colisão
+
 def load_image(file):
     file = os.path.join(main_dir, "data", file)
     try:
@@ -27,6 +41,7 @@ class Jogo:
         pg.display.set_caption('Chaves & Chapolin')
         self.clock = pg.time.Clock()
         self.rodando = True
+        self.cenario_atual = 0
 
         cenario_img = load_image("cenario.png")
         self.background = cenario_img.convert()
@@ -40,8 +55,8 @@ class Jogo:
     
     def executar(self):
         proximo_movimento = 0
-        cooldown_movimentos = 200
-        cooldown_movimentos_diagonal = 282.8 * 2
+        cooldown_movimentos = 100
+        cooldown_movimentos_diagonal = 141.4
 
 
         Player.images = [carregar_sprite("chaves_parado.png"),
@@ -79,13 +94,13 @@ class Jogo:
                 elif direcao_v != 0 or direcao_h != 0: # se não for diagonal, verifica pelo menos se moveu antes de setar o cooldown
                     proximo_movimento = tempo_atual + cooldown_movimentos
 
-                player.move(direcao_v, direcao_h)
+                player.move(direcao_v, direcao_h, self.cenario_atual)
 
             if player.andando :
 
                 if tempo_atual >= player.proximo_frame:
 
-                    player.proximo_frame = tempo_atual + cooldown_movimentos/2
+                    player.proximo_frame = tempo_atual + cooldown_movimentos
 
                     if player.frame == 7:
                         player.frame = 1 # 8 volta pro 1
@@ -121,6 +136,16 @@ def get_posicao_na_matriz(pos_x, pos_y): # se baseie na matriz enviada no zap
     pos_y *= 70
     return (pos_x, pos_y)
 
+def checar_colisao(y, x, cenario) :
+    colisoes = cenarios[cenario]
+    if (y, x) in colisoes :
+        return False
+    if (y, "*") in colisoes :
+        return False
+    if ("*", x) in colisoes :
+        return False
+    return True
+
 class Player(pg.sprite.Sprite):
 
     bounce = 24
@@ -130,6 +155,8 @@ class Player(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, *groups)
         self.image = self.images[0]
         self.rect = self.image.get_rect() # pelo visto, isso é o retangulo do sprite do jogador, tipo uma hitbox
+
+        self.pos_matriz = (7, 7) #  inicial
         self.rect.center = get_posicao_na_matriz(7, 7) # player spawna aqui
 
         self.andando = False
@@ -140,14 +167,19 @@ class Player(pg.sprite.Sprite):
         self.reloading = 0
         self.facing = -1
 
-    def move(self, direcao_v, direcao_h):
+
+    def move(self, direcao_v, direcao_h, cenario):
         if not self.andando :
             suposta_prox_pos = (self.rect.centerx + 70 * direcao_h, self.rect.centery + 70 * direcao_v)
             proximo_rect = self.rect.copy()
             proximo_rect.center = suposta_prox_pos
             if (SCREENRECT.contains(proximo_rect)) : # impede que saia da tela
-              self.proxima_pos = suposta_prox_pos
-              self.andando = True
+              pos_atual = self.pos_matriz
+              y, x = pos_atual[0] + direcao_v, pos_atual[1] + direcao_h
+              if checar_colisao(y, x, cenario):
+                self.pos_matriz = (y, x)
+                self.proxima_pos = suposta_prox_pos
+                self.andando = True
 
     def atualizar_movimento(self): # só pra animação isso aq
 
