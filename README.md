@@ -29,8 +29,8 @@ Comando, caso esteja usando Windows:
 pip install pygame
 ```
 
-5. Teste se o pygame tá rodando:
+5. Teste se o jogo tá rodando, executando esse comando no diretório do projeto:
 
 ```shell
-python3 -m pygame.examples.aliens
+python3 -m main
 ```

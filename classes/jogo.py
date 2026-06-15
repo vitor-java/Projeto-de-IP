@@ -1,7 +1,8 @@
 import pygame as pg
 import sys
 from classes.utils import SCREENRECT, load_image, carregar_sprite
-from classes.personagem import Player
+
+from classes.personagem import Player 
 
 class Jogo:
     def __init__(self):
@@ -34,6 +35,7 @@ class Jogo:
                          carregar_sprite("chaves_baixo_4.png")]
 
         all = pg.sprite.RenderUpdates()
+        
         player = Player(all)
 
         while self.rodando:
