@@ -1,25 +1,13 @@
+# classe principal do jogo. onde deve ter as funções principais do pygame (clock, eventos, etc.)
+
 import pygame as pg
 import sys, os
 
-from typing import List
+from classes.player import Player
 
 SCREENRECT = pg.Rect(0, 0, 980, 770)
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
-
-cenarios = {
-    0: {
-        (10, 11), (10, 12), (9, 13), (8, 13), (7, 13),
-        (6, 13), (5, 13), (4, 12), (4, 11), (4, 10),
-        (3, 10), (2, 9), (2, 8), (2, 6), (2, 7),
-        (4, 5), (5, 5), (6, 5), (6, 6), (7, 5),
-        (7, 6), (6, 4), (7, 3), (8, 3), (6, 3),
-        (5, 3), (4, 3), (3, 3), (2, 3), (2, 5),
-        (3, 4), (1, "*"), ("*", 1)
-    }
-}
-# chave: id do cenário, por exemplo, o primeiro é '0'.
-# valor: um set (lista sem ordem) contendo as posições com colisão
 
 def load_image(file):
     file = os.path.join(main_dir, "data", file)
@@ -58,7 +46,6 @@ class Jogo:
         cooldown_movimentos = 100
         cooldown_movimentos_diagonal = 141.4
 
-
         Player.images = [carregar_sprite("chaves_parado.png"),
                          carregar_sprite("chaves_baixo_1.png"),
                          carregar_sprite("chaves_baixo_2.png"),
@@ -67,7 +54,7 @@ class Jogo:
 
         all = pg.sprite.RenderUpdates()
 
-        player = Player(all)
+        player = Player(SCREENRECT, all)
 
         while self.rodando:
             self.processar_eventos()
@@ -129,86 +116,5 @@ class Jogo:
     
         pg.quit()
         sys.exit()
-
-def get_posicao_na_matriz(pos_x, pos_y): # se baseie na matriz enviada no zap
-    pos_x *= 70
-    pos_x += 35
-    pos_y *= 70
-    return (pos_x, pos_y)
-
-def checar_colisao(y, x, cenario) :
-    colisoes = cenarios[cenario]
-    if (y, x) in colisoes :
-        return False
-    if (y, "*") in colisoes :
-        return False
-    if ("*", x) in colisoes :
-        return False
-    return True
-
-class Player(pg.sprite.Sprite):
-
-    bounce = 24
-    images: List[pg.Surface] = []
-
-    def __init__(self, *groups):
-        pg.sprite.Sprite.__init__(self, *groups)
-        self.image = self.images[0]
-        self.rect = self.image.get_rect() # pelo visto, isso é o retangulo do sprite do jogador, tipo uma hitbox
-
-        self.pos_matriz = (7, 7) #  inicial
-        self.rect.center = get_posicao_na_matriz(7, 7) # player spawna aqui
-
-        self.andando = False
-        self.proxima_pos = (0, 0)
-        self.proximo_frame = 0
-        self.frame = 0
-
-        self.reloading = 0
-        self.facing = -1
-
-
-    def move(self, direcao_v, direcao_h, cenario):
-        if not self.andando :
-            suposta_prox_pos = (self.rect.centerx + 70 * direcao_h, self.rect.centery + 70 * direcao_v)
-            proximo_rect = self.rect.copy()
-            proximo_rect.center = suposta_prox_pos
-            if (SCREENRECT.contains(proximo_rect)) : # impede que saia da tela
-              pos_atual = self.pos_matriz
-              y, x = pos_atual[0] + direcao_v, pos_atual[1] + direcao_h
-              if checar_colisao(y, x, cenario):
-                self.pos_matriz = (y, x)
-                self.proxima_pos = suposta_prox_pos
-                self.andando = True
-
-    def atualizar_movimento(self): # só pra animação isso aq
-
-        if (not self.andando) :
-            return
-
-        velocidade = 2
-        proxima_pos_x = self.proxima_pos[0]
-        proxima_pos_y = self.proxima_pos[1]
-
-        vx = 0
-        vy = 0
-
-        if (self.rect.centerx < proxima_pos_x) :
-            vx = 1
-        elif (self.rect.centerx > proxima_pos_x) :
-            vx = -1
-
-        if (self.rect.centery < proxima_pos_y) :
-            vy = 1
-        elif (self.rect.centery > proxima_pos_y) :
-            vy = -1
-
-        self.rect.move_ip(vx * velocidade, vy * velocidade)
-
-        self.rect = self.rect.clamp(SCREENRECT)
-
-        if (self.rect.center == self.proxima_pos) :
-            self.andando = False
-            self.image = self.images[0]
 
 
