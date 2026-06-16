@@ -58,6 +58,6 @@ def iniciar_cenarios() :
             (3, 4), (1, "*"), ("*", 1)
         }
 
-    matriz_cenario_0 = matrizlogica("Cenário 0", 14, 11)
+    matriz_cenario_0 = matrizlogica("Cenário 0", 11, 14)
     converter_set_para_matriz(cenario_0, matriz_cenario_0)
     cenarios[0] = matriz_cenario_0.dados
