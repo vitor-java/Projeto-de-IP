@@ -1,8 +1,11 @@
 import pygame as pg
 import sys
+
 from classes.utils import SCREENRECT, load_image, carregar_sprite
 
-from classes.personagem import Player 
+from classes.personagem import Player
+
+from classes.mapa import iniciar_cenarios
 
 class Jogo:
     def __init__(self):
@@ -16,7 +19,10 @@ class Jogo:
         cenario_img = load_image("cenario.png")
         self.background = cenario_img.convert()
         self.tela.blit(self.background, (0, 0))
+
         pg.display.flip()
+
+        iniciar_cenarios()
     
     def processar_eventos(self):
         for evento in pg.event.get():
