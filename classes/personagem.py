@@ -31,9 +31,14 @@ class Player(pg.sprite.Sprite):
             proximo_rect.center = suposta_prox_pos
             if (SCREENRECT.contains(proximo_rect)):
                 pos_atual = self.pos_matriz
-                y, x = pos_atual[0] + direcao_v, pos_atual[1] + direcao_h
-                if not checar_colisao(y, x, cenario):
-                    self.pos_matriz = (y, x)
+                y, x = pos_atual[0], pos_atual[1]
+                yi, xi = y + direcao_v, x + direcao_h
+                if direcao_h != 0 and direcao_v != 0:
+                    colisao = checar_colisao(y, xi, cenario) or checar_colisao(yi, x, cenario) or checar_colisao(yi, xi, cenario)
+                else :
+                    colisao = checar_colisao(yi, xi, cenario)
+                if not colisao:
+                    self.pos_matriz = (yi, xi)
                     self.proxima_pos = suposta_prox_pos
                     self.andando = True
 
