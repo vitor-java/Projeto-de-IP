@@ -13,7 +13,7 @@ class matrizlogica:
     def alterar_coluna(self, coluna, valor: bool):
         for i in range(self.linhas) :
             self.dados[i][coluna] = valor
-
+#kasjdh
     def exibir(self):
         # para testar a matriz
         print(f"--- {self.nome} ---")
