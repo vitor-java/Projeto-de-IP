@@ -26,7 +26,7 @@ class matrizlogica:
         if 0 <= linha < self.linhas and 0 <= coluna < self.colunas:
             self.dados[linha][coluna] = valor
             print(f"[{self.nome}] Elemento na posição ({linha}, {coluna}) alterado para {valor}.")
-
+print("aaaaaaaaaa")
 cenarios = {}
 
 def get_posicao_na_matriz(pos_x, pos_y):
