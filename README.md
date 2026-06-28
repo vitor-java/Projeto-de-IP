@@ -1,5 +1,5 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3&cache=2" />
-  
+<img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3&cache=3" />
+
 # Projeto - IP 
 ## Game: Missão pelo sanduíche
 ### Importe o projeto e execute os seguintes comandos no terminal, dentro da pasta do projeto :
@@ -82,5 +82,5 @@ python3 -m main
 </table>
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&section=footer&v=2" alt="Footer Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&section=footer&v=3" alt="Footer Animado" />
 </p>
