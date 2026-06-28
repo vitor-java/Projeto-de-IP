@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3&cache=3" />
+<img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=FFC0CB&version=3&cache=3" />
 
 # Projeto - IP 
 ## Game: Missão pelo sanduíche
