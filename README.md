@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://camo.githubusercontent.com/3f38b26bc5e1ef47af5a877f33b1048617589fd85e9c0997315a4e5ca0f2d66a/68747470733a2f2f63617073756c652d72656e6465722e76657263656c2e6170702f6170693f747970653d776176696e67266865696768743d31313226636f6c6f723d6772616469656e7426637573746f6d436f6c6f724c6973743d33332673656374696f6e3d686561646572" alt="Header Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=112&color=3776AB&section=header" alt="Header Animado" />
 </p>
 
 # Projeto - IP 
@@ -37,16 +37,17 @@ python3 -m main
 ```
 
 <p align="center">
-  <img src="https://camo.githubusercontent.com/d452d18acd6a61302d2edbedf78c2ceab3cfb3699a215a019c573d63a9393c8b/68747470733a2f2f63617073756c652d72656e6465722e76657263656c2e6170702f6170693f747970653d776176696e67266865696768743d31313226636f6c6f723d6772616469656e7426637573746f6d436f6c6f724c6973743d33332673656374696f6e3d666f6f746572" alt="Header Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=112&color=3776AB&section=footer" alt="Footer Animado" />
 </p>
 
 # Tecnologias 
 
+
+![Header py](https://capsule-render.vercel.app/api?type=venom&height=100&text=.py&fontSize=50&color=0:2b5b84,100:3776AB&stroke=2b5b84)
+
 ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Git Badge](https://img.shields.io/badge/Git-F03C2E?logo=git&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Pygame](https://img.shields.io/badge/Pygame-3776AB?style=for-the-badge&logo=fort-awesome&logoColor=white)
 
 ## 👥 Equipe
-## 👥 Equipe
-
 <table>
   <tr>
     <td valign="middle" align="center">
@@ -81,3 +82,6 @@ python3 -m main
     </td>
   </tr>
 </table>
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=112&color=3776AB&section=footer" alt="Footer Animado" />
+</p>
