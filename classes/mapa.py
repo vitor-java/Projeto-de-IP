@@ -13,7 +13,7 @@ class matrizlogica:
     def alterar_coluna(self, coluna, valor: bool):
         for i in range(self.linhas) :
             self.dados[i][coluna] = valor
-#kasjdh
+
     def exibir(self):
         # para testar a matriz
         print(f"--- {self.nome} ---")
@@ -38,33 +38,39 @@ def get_posicao_na_matriz(pos_x, pos_y):
 def checar_colisao(linha, coluna, cenario):
     return cenarios[cenario][linha][coluna]
 
+# formata os valores do set para matriz:
 def converter_set_para_matriz(colisoes, matriz):
     for colisao in colisoes:
         if (colisao[0] == "*"):
             matriz.alterar_coluna(colisao[1], True)
-
         elif (colisao[1] == "*"):
             matriz.alterar_linha(colisao[0], True)
-
         else:
             matriz.alterar_elemento(colisao[0], colisao[1], True)
 
+# inicia as colisoes dos 3 cenarios:
 def iniciar_cenarios() :
     cenario_0 = {
-            (10, 11), (10, 12), (9, 13), (8, 13), (7, 13),
-            (6, 13), (5, 13), (4, 12), (4, 11), (4, 10),
-            (3, 10), (2, 9), (2, 8), (2, 6), (2, 7),
-            (4, 5), (5, 5), (6, 5), (6, 6), (7, 5),
-            (7, 6), (6, 4), (7, 3), (8, 3), (6, 3),
-            (5, 3), (4, 3), (3, 3), (2, 3), (2, 5),
-            (3, 4), (1, "*"), ("*", 0), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1)
-             }
-    cenario_1 = {}
-    cenario_2 = {}
+        (10, 11), (10, 12), (9, 13), (8, 13), (7, 13),(3, 5),
+        (6, 13), (5, 13), (4, 12), (4, 11), (4, 10),(7, 12),
+        (3, 10), (2, 9), (2, 8), (2, 6), (2, 7),(5, 1),
+        (4, 5), (5, 5), (6, 5), (6, 6), (7, 5),(7, 1),
+        (7, 6), (6, 4), (7, 3), (8, 3), (6, 3),(8, 1),
+        (5, 3), (4, 3), (3, 3), (2, 3), (2, 5),(9, 1),
+        (3, 4), (1, 1), (2, 1), (3, 1), (4, 1),(6, 1),(1, "*"),("*", 0)
+        }
+    
+    cenario_1 = {
+
+    }
+    cenario_2 = {
+
+    }
+
 
     matriz_cenario_0 = matrizlogica("Cenário 0", 11, 14)
-    matriz_cenario_1 = matrizlogica("Casa da Bruxa", 11, 14)
-    matriz_cenario_2 = matrizlogica("Fonte", 11, 14)
+    matriz_cenario_1 = matrizlogica("Cenário 0", 11, 14)
+    matriz_cenario_2 = matrizlogica("Cenário 0", 11, 14)
     
     converter_set_para_matriz(cenario_0, matriz_cenario_0)
     converter_set_para_matriz(cenario_1, matriz_cenario_1)
@@ -73,4 +79,3 @@ def iniciar_cenarios() :
     cenarios[0] = matriz_cenario_0.dados
     cenarios[1] = matriz_cenario_1.dados
     cenarios[2] = matriz_cenario_2.dados
-    

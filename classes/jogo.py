@@ -17,8 +17,8 @@ class Jogo:
         self.rodando = True
         self.cenario_atual = 0
 
-        self.dicionario_mapas = {0: load_image("cenario0.png").convert(), 1: load_image("cenario1.png").convert(),
-                                 2: load_image("cenario2.png").convert()}
+        self.dicionario_mapas = {0: load_image("cenarios/cenario0.png").convert(), 1: load_image("cenarios/cenario1.png").convert(),
+                                 2: load_image("cenarios/cenario2.png").convert()}
         self.tela.blit(self.dicionario_mapas[0], (0, 0))
 
         pg.display.flip()
