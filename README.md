@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&section=header&v=2" alt="Header Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3" alt="Header Animado" />
 </p>
 
 # Projeto - IP 
@@ -35,9 +35,8 @@ pip install pygame
 ```shell
 python3 -m main
 ```
-
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&section=footer&v=2" alt="Footer Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3&side=bottom" alt="Footer Animado" />
 </p>
 
 # Tecnologias 
@@ -84,5 +83,5 @@ python3 -m main
   </tr>
 </table>
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&section=footer&v=2" alt="Footer Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3&side=bottom" alt="Footer Animado" />
 </p>
