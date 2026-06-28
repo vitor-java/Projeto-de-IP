@@ -45,37 +45,38 @@ python3 -m main
 ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Git Badge](https://img.shields.io/badge/Git-F03C2E?logo=git&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Pygame](https://img.shields.io/badge/Pygame-3776AB?style=for-the-badge&logo=fort-awesome&logoColor=white)
 
 ## 👥 Equipe
+## 👥 Equipe
 
 <table>
   <tr>
     <td valign="middle" align="center">
       <a href="https://github.com/vitor-java">
-        <img src="https://github.com/vitor-java.png" width="35px" style="border-radius:50%;"> &nbsp; Vitor
+        <img src="https://images.weserv.nl/?url=github.com/vitor-java.png&w=35&h=35&mask=circle" alt="Vitor"><br>Vitor
       </a>
     </td>
     <td valign="middle" align="center">
       <a href="https://github.com/eugeni1">
-        <img src="https://github.com/eugeni1.png" width="35px" style="border-radius: 50%;"> &nbsp; Eugênio
+        <img src="https://images.weserv.nl/?url=github.com/eugeni1.png&w=35&h=35&mask=circle" alt="Eugênio"><br>Eugênio
       </a>
     </td>
     <td valign="middle" align="center">
       <a href="https://github.com/Arthur-Carvalh01">
-        <img src="https://github.com/Arthur-Carvalh01.png" width="35px" style="border-radius: 50%;"> &nbsp; José
+        <img src="https://images.weserv.nl/?url=github.com/Arthur-Carvalh01.png&w=35&h=35&mask=circle" alt="José"><br>José
       </a>
     </td>
-     <td valign="middle" align="center">
-      <a href="https://github.com/AMIGO_2">
-        <img src="https://github.com/Arthur-Carvalh01.png" width="35px" style="border-radius: 50%;"> &nbsp; Guilherme
+    <td valign="middle" align="center">
+      <a href="https://github.com/guilherme">
+        <img src="https://images.weserv.nl/?url=github.com/guilherme.png&w=35&h=35&mask=circle" alt="Guilherme"><br>Guilherme
       </a>
     </td>
-     <td valign="middle" align="center">
-      <a href="https://github.com/AMIGO_2">
-        <img src="https://github.com/Arthur-Carvalh01.png" width="35px" style="border-radius: 50%;"> &nbsp; Cagnin
+    <td valign="middle" align="center">
+      <a href="https://github.com/cagnin">
+        <img src="https://images.weserv.nl/?url=github.com/cagnin.png&w=35&h=35&mask=circle" alt="Cagnin"><br>Cagnin
       </a>
     </td>
-     <td valign="middle" align="center">
+    <td valign="middle" align="center">
       <a href="https://github.com/PedroReis0310">
-        <img src="https://github.com/PedroReis0310.png" width="35px" style="border-radius: 50%;"> &nbsp; Pedro
+        <img src="https://images.weserv.nl/?url=github.com/PedroReis0310.png&w=35&h=35&mask=circle" alt="Pedro"><br>Pedro
       </a>
     </td>
   </tr>
