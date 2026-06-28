@@ -1,7 +1,5 @@
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3" alt="Header Animado" />
-</p>
-
+<img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3&cache=2" />
+  
 # Projeto - IP 
 ## Game: Missão pelo sanduíche
 ### Importe o projeto e execute os seguintes comandos no terminal, dentro da pasta do projeto :
@@ -36,7 +34,7 @@ pip install pygame
 python3 -m main
 ```
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3&side=bottom" alt="Footer Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&section=footer&v=3" alt="Footer Animado" />
 </p>
 
 # Tecnologias 
@@ -82,6 +80,7 @@ python3 -m main
     </td>
   </tr>
 </table>
+
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&version=3&side=bottom" alt="Footer Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&section=footer&v=2" alt="Footer Animado" />
 </p>
