@@ -1,7 +1,10 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=2D6CDF&version=3&cache=23" />
 
-# Projeto - IP 
-## Game: Missão pelo sanduíche
+<h1 align="center" style="margin-top: 10px; margin-bottom: 20px;">Projeto - IP</h1>
+
+<h2 align="center" style="margin-top: 10px; margin-bottom: 20px;">Game: Missão pelo sanduíche</h2>
+
+
 ### Importe o projeto e execute os seguintes comandos no terminal, dentro da pasta do projeto :
 
 #### 1º&nbsp;:&nbsp;&nbsp;Verifique se já existe uma pasta de virtual environment. Ela pode aparecer como ".venv", "venv", ou semelhantes. Caso não haja, crie uma virtual environment chamada 'venv':
@@ -37,13 +40,17 @@ python3 -m main
   <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=2D6CDF&section=footer&v=22" alt="Footer Animado" />
 </p>
 
+<div align="center">
+
 # Tecnologias 
 <br>
 
-![Header .py](https://capsule-render.vercel.app/api?type=venom&height=200&text=.py&fontSize=70&color=0:3776AB,100:0D1B2A&v=21)
+![Header .py](https://capsule-render.vercel.app/api?type=venom&height=200&text=.py&fontSize=70&color=0:3776AB,100:1B263B&v=777)
 <br>
 
-![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Git Badge](https://img.shields.io/badge/Git-F03C2E?logo=git&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Pygame](https://img.shields.io/badge/Pygame-3776AB?style=for-the-badge&logo=fort-awesome&logoColor=white)<br>
+![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Git Badge](https://img.shields.io/badge/Git-F03C2E?logo=git&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Pygame](https://img.shields.io/badge/Pygame-3776AB?style=for-the-badge&logo=fort-awesome&logoColor=white)
+
+
 
 ## 👥 Equipe
 <table>
@@ -84,3 +91,5 @@ python3 -m main
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=2D6CDF&section=footer&v=20" alt="Footer Animado" />
 </p>
+
+</div>
