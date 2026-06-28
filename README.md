@@ -2,13 +2,13 @@
 ## Game: Missão pelo sanduíche. 
 ## Importe o projeto e execute os seguintes comandos no terminal, dentro da pasta do projeto :
 
-### 1º : Verifique se já existe uma pasta de virtual environment. Ela pode aparecer como ".venv", "venv", ou semelhantes. Caso não haja, crie um virtual environment chamado 'venv':
+### 1º&nbsp;:&nbsp;&nbsp;Verifique se já existe uma pasta de virtual environment. Ela pode aparecer como ".venv", "venv", ou semelhantes. Caso não haja, crie um virtual environment chamado 'venv':
 
 ```shell
 python3 -m venv venv
 ```
 
-### 2º : Entre no ambiente virtual criado ou já existente para ser usado pelo projeto: Substitua "&lt;nome&gt;" pelo nome do virtual environment. 
+### 2º&nbsp;:&nbsp;&nbsp;Entre no ambiente virtual criado ou já existente para ser usado pelo projeto: Substitua "&lt;nome&gt;" pelo nome do virtual environment. 
 
 #### Comando caso esteja usando Ubuntu:
 ```shell
@@ -20,15 +20,15 @@ source <nome>/bin/activate
 .\<nome>\Scripts\Activate.ps1
 ```
 
-### 3º : Instale o pygame:
+### 3º&nbsp;:&nbsp;&nbsp;Instale o pygame com o comando:
 
 ```shell
 pip install pygame
 ```
 
-### Teste se o jogo tá rodando, executando esse comando no diretório do projeto:
+### Inicie o jogo executando esse comando no terminal da raiz principal do projeto:
 
 ```shell
 python3 -m main
 ```
-![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
+![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Git Badge](https://img.shields.io/badge/Git-F03C2E?logo=git&logoColor=fff&style=for-the-badge)
