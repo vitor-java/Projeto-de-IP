@@ -37,14 +37,12 @@ python3 -m main
 ```
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=112&color=3776AB&section=footer" alt="Footer Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=2b5b84&section=footer" alt="Footer Animado" />
 </p>
 
 # Tecnologias 
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=2b5b84&section=footer" alt="Footer Animado" />
-</p>
+![Header .py](https://capsule-render.vercel.app/api?type=venom&height=100&text=.py&fontSize=70&color=0:2b5b84,100:3776AB&stroke=2b5b84)
 
 ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Git Badge](https://img.shields.io/badge/Git-F03C2E?logo=git&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Pygame](https://img.shields.io/badge/Pygame-3776AB?style=for-the-badge&logo=fort-awesome&logoColor=white)
 
