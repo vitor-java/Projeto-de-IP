@@ -19,6 +19,7 @@ class Player(pg.sprite.Sprite):
         self.pos_matriz = (7, 7)
         self.rect.center = get_posicao_na_matriz(7, 7)
 
+        self.prox_cenario = -1
         self.andando = False
         self.proxima_pos = (0, 0)
         self.proximo_frame = 0
@@ -36,8 +37,12 @@ class Player(pg.sprite.Sprite):
                 pos_atual = self.pos_matriz
                 y, x = pos_atual[0], pos_atual[1]
                 yi, xi = y + direcao_v, x + direcao_h
-                if (yi, xi) == (3, 10):
+
+                if cenario == 0 and (yi, xi) == (3, 10): # testando portas
                     self.proximocenario = 1
+                    self.teleportar(9, 7)
+                    return
+
 
                 if direcao_h != 0 and direcao_v != 0:
                     colisao = checar_colisao(y, xi, cenario) or checar_colisao(yi, x, cenario) or checar_colisao(yi, xi, cenario)
@@ -47,6 +52,13 @@ class Player(pg.sprite.Sprite):
                     self.pos_matriz = (yi, xi)
                     self.proxima_pos = suposta_prox_pos
                     self.andando = True
+
+    def teleportar(self, y, x):
+        self.frame = 0
+        self.andando = False
+        self.pos_matriz = (y, x)
+        xi, yi = get_posicao_na_matriz(x, y)
+        self.rect.center = (xi, yi)
 
     def atualizar_movimento(self):
         if (not self.andando):

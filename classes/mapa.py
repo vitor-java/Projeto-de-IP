@@ -41,9 +41,11 @@ def checar_colisao(linha, coluna, cenario):
 def converter_set_para_matriz(colisoes, matriz):
     for colisao in colisoes:
         if (colisao[0] == "*"):
-            matriz.alterar_linha(colisao[1], True)
+            matriz.alterar_coluna(colisao[1], True)
+
         elif (colisao[1] == "*"):
-            matriz.alterar_coluna(colisao[0], True)
+            matriz.alterar_linha(colisao[0], True)
+
         else:
             matriz.alterar_elemento(colisao[0], colisao[1], True)
 
@@ -55,14 +57,14 @@ def iniciar_cenarios() :
             (4, 5), (5, 5), (6, 5), (6, 6), (7, 5),
             (7, 6), (6, 4), (7, 3), (8, 3), (6, 3),
             (5, 3), (4, 3), (3, 3), (2, 3), (2, 5),
-            (3, 4), (1, "*"), ("*", 1)
+            (3, 4), (1, "*"), ("*", 0), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1)
              }
     cenario_1 = {}
     cenario_2 = {}
 
     matriz_cenario_0 = matrizlogica("Cenário 0", 11, 14)
-    matriz_cenario_1 = matrizlogica("Cenário 0", 11, 14)
-    matriz_cenario_2 = matrizlogica("Cenário 0", 11, 14)
+    matriz_cenario_1 = matrizlogica("Casa da Bruxa", 11, 14)
+    matriz_cenario_2 = matrizlogica("Fonte", 11, 14)
     
     converter_set_para_matriz(cenario_0, matriz_cenario_0)
     converter_set_para_matriz(cenario_1, matriz_cenario_1)
