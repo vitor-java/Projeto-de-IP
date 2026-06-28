@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=FFC0CB&version=3&cache=3" />
+<img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=0D1B2A&version=3&cache=3" />
 
 # Projeto - IP 
 ## Game: Missão pelo sanduíche
@@ -34,13 +34,13 @@ pip install pygame
 python3 -m main
 ```
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&section=footer&v=3" alt="Footer Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=0D1B2A&section=footer&v=3" alt="Footer Animado" />
 </p>
 
 # Tecnologias 
 <br>
 
-![Header .py](https://capsule-render.vercel.app/api?type=venom&height=200&text=.py&fontSize=70&color=0:1e4a71,100:3776AB&v=2)
+![Header .py](https://capsule-render.vercel.app/api?type=venom&height=200&text=.py&fontSize=70&color=0:3776AB,100:0D1B2A&v=2)
 <br>
 
 ![Python Badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Git Badge](https://img.shields.io/badge/Git-F03C2E?logo=git&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;![Pygame](https://img.shields.io/badge/Pygame-3776AB?style=for-the-badge&logo=fort-awesome&logoColor=white)<br>
@@ -82,5 +82,5 @@ python3 -m main
 </table>
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=1e4a71&section=footer&v=3" alt="Footer Animado" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=180&color=0D1B2A&section=footer&v=3" alt="Footer Animado" />
 </p>
