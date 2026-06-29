@@ -153,7 +153,7 @@ Projeto-de-IP
 ---
 
 <a id="tecnologias-utilizadas"></a>
-<h1 align="center">Tecnologias</h1>
+<h1 align="center">Ferramentas/Tecnologias</h1>
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=venom&height=40&fontSize=35&color=0:3776AB,100:1B263B&v=99" alt="Header .py" />
