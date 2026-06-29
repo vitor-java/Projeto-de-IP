@@ -3,7 +3,7 @@ class matrizlogica:
         self.nome = nome
         self.linhas = linhas
         self.colunas = colunas
-        # inicializa a matriz
+        #Inicializa a matriz
         self.dados = [[False for _ in range(colunas)] for _ in range(linhas)]
 
     def alterar_linha(self, linha, valor: bool):
@@ -15,7 +15,7 @@ class matrizlogica:
             self.dados[i][coluna] = valor
 
     def exibir(self):
-        # para testar a matriz
+        #Para testar a matriz
         print(f"--- {self.nome} ---")
         for linha in self.dados:
             linha_visual = [1 if elemento else 0 for elemento in linha]
@@ -33,12 +33,12 @@ def get_posicao_na_matriz(pos_x, pos_y):
     pos_x *= 70
     pos_x += 35
     pos_y *= 70
-    return (pos_x, pos_y) # formato: coluna, linha
+    return (pos_x, pos_y) #Formato: coluna, linha
 
 def checar_colisao(linha, coluna, cenario):
     return cenarios[cenario][linha][coluna]
 
-# formata os valores do set para matriz:
+#Formata os valores do set para valores em elementos da matriz:
 def converter_set_para_matriz(colisoes, matriz):
     for colisao in colisoes:
         if (colisao[0] == "*"):
@@ -48,8 +48,9 @@ def converter_set_para_matriz(colisoes, matriz):
         else:
             matriz.alterar_elemento(colisao[0], colisao[1], True)
 
-# inicia as colisoes dos 3 cenarios:
+#Inicia as colisoes dos 3 cenarios:
 def iniciar_cenarios() :
+    #Inicia as colisoes do cenario 0
     cenario_0 = {
     (1, "*"),
     (2, 1), (2, 3), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9),
@@ -64,6 +65,7 @@ def iniciar_cenarios() :
     ("*", 0)
     }
 
+    #Inicia as colisoes do cenario 1
     cenario_1 = {
         ("*", 1),(1, "*"),(2, "*"),
         (3, 3),(3, 4),(3, 5),(3, 6),(3, 7),(3, 10),(3, 11),(3, 12),(3, 13),
@@ -77,6 +79,7 @@ def iniciar_cenarios() :
         ("*", 0)
     }
 
+    #Inicia as colisoes do cenario 2
     cenario_2 = {
         (1, "*"),
         (2, 1),(2, 2),(2, 3),(2, 4),(2, 5),(2, 6),(2, 7),(2, 8),(2, 10),(2, 11),(2, 12),
