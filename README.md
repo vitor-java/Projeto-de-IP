@@ -1,4 +1,6 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&height=130&color=2D6CDF&version=3&cache=99" />
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=130&color=2D6CDF&version=3&cache=99" />
+</p>
 
 <h1 align="center" style="margin-top: 10px; margin-bottom: 20px;">🥪 Missão pelo Sanduíche</h1>
 
