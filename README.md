@@ -156,7 +156,7 @@ Projeto-de-IP
 <h1 align="center">Tecnologias</h1>
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=venom&height=90&text=.py&fontSize=35&color=0:3776AB,100:1B263B&v=99" alt="Header .py" />
+  <img src="https://capsule-render.vercel.app/api?type=venom&height=40&fontSize=35&color=0:3776AB,100:1B263B&v=99" alt="Header .py" />
 </p>
 
 <p align="center">
@@ -165,7 +165,8 @@ Projeto-de-IP
   <img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=for-the-badge" alt="GitHub Badge" />&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://img.shields.io/badge/Pygame-3776AB?style=for-the-badge&logo=fort-awesome&logoColor=white" alt="Pygame" />&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://img.shields.io/badge/PyCharm-000?logo=pycharm&logoColor=fff&style=for-the-badge" alt="PyCharm Badge">&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://img.shields.io/badge/Google%20Gemini-8E75B2?logo=googlegemini&logoColor=fff&style=for-the-badge" alt="Google Gemini Badge">
+  <img src="https://img.shields.io/badge/Google%20Gemini-8E75B2?logo=googlegemini&logoColor=fff&style=for-the-badge" alt="Google Gemini Badge">&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/Markdown-000?logo=markdown&logoColor=fff&style=for-the-badge" alt="Markdown Badge">
   
 </p>
 
@@ -184,7 +185,7 @@ Projeto-de-IP
       </td>
       <td valign="middle" align="center">
         <a href="https://github.com/eugeni1">
-          <img src="https://images.weserv.nl/?url=github.com/eugeni1.png&w=35&h=35&mask=circle" alt="Eugênio"><br>Eugênio
+          <img src="https://images.weserv.nl/?url=github.com/eugeni1.png&w=35&h=35&mask=circle&v=10" alt="Eugênio"><br>Eugênio
         </a>
       </td>
       <td valign="middle" align="center">
