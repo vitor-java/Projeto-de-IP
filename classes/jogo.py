@@ -19,6 +19,11 @@ class Jogo:
 
         self.dicionario_mapas = {0: load_image("cenarios/cenario0.png").convert(), 1: load_image("cenarios/cenario1.png").convert(),
                                  2: load_image("cenarios/cenario2.png").convert()}
+
+
+        self.dicionario_mapas_overlays = {0: load_image("cenarios/overlays/cenario0_overlay.png").convert_alpha(), 1: pg.Surface((980, 770), pg.SRCALPHA).convert_alpha(),
+                                 2: pg.Surface((980, 770), pg.SRCALPHA).convert_alpha()}
+
         self.tela.blit(self.dicionario_mapas[0], (0, 0))
 
         pg.display.flip()
@@ -37,8 +42,8 @@ class Jogo:
 
     def executar(self):
         proximo_movimento = 0
-        cooldown_movimentos = 100
-        cooldown_movimentos_diagonal = 141.4
+        cooldown_movimentos = 70
+        cooldown_movimentos_diagonal = cooldown_movimentos * (2 ** 0.5)
 
         Player.images = [carregar_sprite("chaves/chaves_parado.png"),
                          carregar_sprite("chaves/chaves_baixo_1.png"),
@@ -86,12 +91,15 @@ class Jogo:
 
                     player.image = player.images[frame]
 
-                player.atualizar_movimento()
+                player.atualizar_movimento(self.cenario_atual)
 
             all.clear(self.tela, self.dicionario_mapas.get(self.cenario_atual))
 
             dirty = all.draw(self.tela)
-            pg.display.update(dirty)
+
+            self.tela.blit(self.dicionario_mapas_overlays.get(self.cenario_atual), (0, 0))
+            pg.display.flip()
+
             self.clock.tick(60)
 
         pg.quit()

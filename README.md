@@ -29,7 +29,7 @@ Relatório de desenvolvimento do jogo Missão pelo Sanduíche, desenvolvido para
 #### 1º&nbsp;:&nbsp;&nbsp;Verifique se já existe uma pasta de virtual environment. Ela pode aparecer como ".venv", "venv", ou semelhantes. Caso não haja, crie uma virtual environment chamada 'venv':
 
 ```shell
-python3 -m venv venv
+python3 -m .venv .venv
 ```
 
 #### 2º&nbsp;:&nbsp;&nbsp;Entre no ambiente virtual criado ou já existente para ser usado pelo projeto: Substitua "&lt;nome&gt;" pelo nome do virtual environment.

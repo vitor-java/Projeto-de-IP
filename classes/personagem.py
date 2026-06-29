@@ -38,20 +38,18 @@ class Player(pg.sprite.Sprite):
                 y, x = pos_atual[0], pos_atual[1]
                 yi, xi = y + direcao_v, x + direcao_h
 
-                if cenario == 0 and (yi, xi) == (3, 10): # testando portas
-                    self.proximocenario = 1
-                    self.teleportar(9, 7)
-                    return
-
 
                 if direcao_h != 0 and direcao_v != 0:
                     colisao = checar_colisao(y, xi, cenario) or checar_colisao(yi, x, cenario) or checar_colisao(yi, xi, cenario)
                 else :
                     colisao = checar_colisao(yi, xi, cenario)
                 if not colisao:
+
                     self.pos_matriz = (yi, xi)
                     self.proxima_pos = suposta_prox_pos
                     self.andando = True
+
+
 
     def teleportar(self, y, x):
         self.frame = 0
@@ -60,7 +58,7 @@ class Player(pg.sprite.Sprite):
         xi, yi = get_posicao_na_matriz(x, y)
         self.rect.center = (xi, yi)
 
-    def atualizar_movimento(self):
+    def atualizar_movimento(self, cenario):
         if (not self.andando):
             return
 
@@ -85,5 +83,26 @@ class Player(pg.sprite.Sprite):
         self.rect = self.rect.clamp(SCREENRECT)
 
         if (self.rect.center == self.proxima_pos):
+
+            if cenario == 1 and (self.pos_matriz == (10, 6) or self.pos_matriz == (10, 7)):  # testando portas
+                self.proximocenario = 0
+                self.teleportar(3, 9)
+                return
+
+            if cenario == 2 and self.pos_matriz[0] == 10:  # testando portas
+                self.proximocenario = 0
+                self.teleportar(5, 12)
+                return
+
+            if cenario == 0 and self.pos_matriz == (3, 10):  # testando portas
+                self.proximocenario = 1
+                self.teleportar(9, 7)
+                return
+
+            if cenario == 0 and self.pos_matriz == (5, 13):  # testando portas
+                self.proximocenario = 2
+                self.teleportar(9, 7)
+                return
+
             self.andando = False
             self.image = self.images[0]
