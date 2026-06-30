@@ -70,13 +70,13 @@ class Jogo:
                          carregar_sprite("chaves/chaves_baixo_3.png"),
                          carregar_sprite("chaves/chaves_baixo_4.png")] # sprites do chaves pra baixo
 
-        Player.images[1] = [carregar_sprite("chaves/chaves_direita_3.png"),
+        Player.images[1] = [carregar_sprite("chaves/chaves_direita_parado.png"),
                          carregar_sprite("chaves/chaves_direita_1.png"),
                          carregar_sprite("chaves/chaves_direita_2.png"),
                          carregar_sprite("chaves/chaves_direita_3.png"),
                          carregar_sprite("chaves/chaves_direita_4.png")]
 
-        Player.images[2] = [carregar_sprite("chaves/chaves_direita_3.png", 70, 140, True),
+        Player.images[2] = [carregar_sprite("chaves/chaves_direita_parado.png", 70, 140, True),
                          carregar_sprite("chaves/chaves_direita_1.png", 70, 140, True),
                          carregar_sprite("chaves/chaves_direita_2.png", 70, 140, True),
                          carregar_sprite("chaves/chaves_direita_3.png", 70, 140, True),
