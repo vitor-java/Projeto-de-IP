@@ -1,7 +1,8 @@
 import pygame as pg
 import sys
 
-from classes import items
+from classes import items, gif_overlay
+from classes.gif_overlay import Gif
 from classes.items import Item
 from classes.utils import SCREENRECT, load_image, carregar_sprite
 
@@ -18,6 +19,8 @@ class Jogo:
         self.clock = pg.time.Clock()
         self.rodando = True
         self.cenario_atual = 0
+
+        self.explosao = Gif() # gif da explosão
 
         self.dicionario_mapas = {0: load_image("cenarios/cenario0.png").convert(), 1: load_image("cenarios/cenario1.png").convert(),
                                  2: load_image("cenarios/cenario2.png").convert()}
@@ -89,6 +92,7 @@ class Jogo:
                          carregar_sprite("chaves/chaves_cima_3.png"),
                          carregar_sprite("chaves/chaves_cima_4.png")]
 
+        gato_sprites = [carregar_sprite("gato/gatofdp1.png", 100, 100, True).convert_alpha(), carregar_sprite("gato/gatofdp2.png", 100, 100, True).convert_alpha()]
 
         all = pg.sprite.RenderUpdates()
 
@@ -132,6 +136,15 @@ class Jogo:
 
                 player.atualizar_movimento(self.cenario_atual)
 
+            if player.explodido and self.explosao.pode_teleportar:
+                self.explosao.pode_teleportar = False
+                player.explodido = False
+                self.trocar_cenario(0)
+                player.teleportar(3, 9, 2)
+
+            elif player.explodido and not self.explosao.ta_tocando:
+                self.explosao.iniciar()
+
             self.tela.blit(self.dicionario_mapas[self.cenario_atual], (0, 0))
 
             carregar_com_overlay = set()
@@ -163,11 +176,20 @@ class Jogo:
 
             all.draw(self.tela) # jogador
 
+            if (self.cenario_atual == 1) :
+                if (not player.explodido) :
+                    self.tela.blit(gato_sprites[0], (748, 523))
+                else :
+                    self.tela.blit(gato_sprites[1], (748, 523))
+
             for item in carregar_com_overlay :
               item.update()
               self.tela.blit(item.image, item.rect)
 
             self.tela.blit(self.dicionario_mapas_overlays[self.cenario_atual], (0, 0))
+
+            self.explosao.atualizar()
+            self.explosao.desenhar(self.tela)
 
             pg.display.flip()
 

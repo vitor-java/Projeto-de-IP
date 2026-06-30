@@ -44,6 +44,8 @@ class Player(pg.sprite.Sprite):
         # 2 -> esquerda
         # 3 -> cima
 
+        self.explodido = False
+
         self.image = self.images[self.facing][0]
         self.rect = self.image.get_rect()
         self.rect.center = get_posicao_na_matriz(7, 7)
@@ -80,8 +82,10 @@ class Player(pg.sprite.Sprite):
 
 
 
-    def teleportar(self, y, x):
+    def teleportar(self, y, x, facing):
         self.frame = 0
+        self.image = self.images[facing][0]
+        self.facing = facing
         self.andando = False
         self.pos_matriz = (y, x)
         xi, yi = get_posicao_na_matriz(x, y)
@@ -94,6 +98,12 @@ class Player(pg.sprite.Sprite):
         velocidade = 2
         proxima_pos_x = self.proxima_pos[0]
         proxima_pos_y = self.proxima_pos[1]
+
+        y, x = self.pos_matriz[0], self.pos_matriz[1] # matriz
+
+        if (cenario == 1 and not self.explodido):
+            if not checar_colisao(y, x, 3):
+                self.explodido = True
 
         vx = 0
         vy = 0
@@ -115,22 +125,22 @@ class Player(pg.sprite.Sprite):
 
             if cenario == 1 and (self.pos_matriz == (10, 6) or self.pos_matriz == (10, 7)):  # testando portas
                 self.proximocenario = 0
-                self.teleportar(3, 9)
+                self.teleportar(3, 9, 2)
                 return
 
             if cenario == 2 and self.pos_matriz[0] == 10:  # testando portas
                 self.proximocenario = 0
-                self.teleportar(5, 12)
+                self.teleportar(5, 12, 2)
                 return
 
             if cenario == 0 and self.pos_matriz == (3, 10):  # testando portas
                 self.proximocenario = 1
-                self.teleportar(9, 7)
+                self.teleportar(9, 7, 3)
                 return
 
             if cenario == 0 and self.pos_matriz == (5, 13):  # testando portas
                 self.proximocenario = 2
-                self.teleportar(9, 7)
+                self.teleportar(9, 7, 3)
                 return
 
             self.andando = False
