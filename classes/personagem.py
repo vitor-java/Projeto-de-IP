@@ -1,23 +1,35 @@
 import pygame as pg
-from typing import List
+from typing import Dict, List
 from classes.utils import SCREENRECT
 from classes.mapa import get_posicao_na_matriz, checar_colisao
 
 
+def get_facing(direcao_v, direcao_h) :
+    if (direcao_h == 1):
+        return 1
+    elif (direcao_h == -1):
+        return 2
+    elif (direcao_v == 1) :
+        return 0
+    elif (direcao_v == -1) :
+        return 3
+    return 0
 
 class Player(pg.sprite.Sprite):
 
     bounce = 24
-    images: List[pg.Surface] = []
+    images: Dict[int, List[pg.Surface]] = {
+        0: [],
+        1: [],
+        2: [],
+        3: []
+    }
 
     def __init__(self, *groups):
         pg.sprite.Sprite.__init__(self, *groups)
         self.proximocenario = -1
-        self.image = self.images[0]
-        self.rect = self.image.get_rect()
 
         self.pos_matriz = (7, 7)
-        self.rect.center = get_posicao_na_matriz(7, 7)
 
         self.prox_cenario = -1
         self.andando = False
@@ -26,9 +38,21 @@ class Player(pg.sprite.Sprite):
         self.frame = 0
 
         self.reloading = 0
-        self.facing = -1    
+        self.facing = 0 #
+        # 0 -> baixo
+        # 1 -> direita
+        # 2 -> esquerda
+        # 3 -> cima
+
+        self.image = self.images[self.facing][0]
+        self.rect = self.image.get_rect()
+        self.rect.center = get_posicao_na_matriz(7, 7)
+
+
 
     def move(self, direcao_v, direcao_h, cenario):
+        if (direcao_v == 0 and direcao_h == 0) :
+            return
         if not self.andando:
             suposta_prox_pos = (self.rect.centerx + 70 * direcao_h, self.rect.centery + 70 * direcao_v)
             proximo_rect = self.rect.copy()
@@ -38,6 +62,11 @@ class Player(pg.sprite.Sprite):
                 y, x = pos_atual[0], pos_atual[1]
                 yi, xi = y + direcao_v, x + direcao_h
 
+                nova_facing = get_facing(direcao_v, direcao_h)
+                if (nova_facing != self.facing) : # troca de direções na animação
+                    self.facing = nova_facing
+                    self.frame = 0
+                    self.image = self.images[nova_facing][0]
 
                 if direcao_h != 0 and direcao_v != 0:
                     colisao = checar_colisao(y, xi, cenario) or checar_colisao(yi, x, cenario) or checar_colisao(yi, xi, cenario)
@@ -105,4 +134,4 @@ class Player(pg.sprite.Sprite):
                 return
 
             self.andando = False
-            self.image = self.images[0]
+            self.image = self.images[self.facing][0]

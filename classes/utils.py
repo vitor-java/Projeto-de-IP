@@ -14,6 +14,8 @@ def load_image(file):
         raise SystemExit(f'Erro ao carregar "{file}" {pg.get_error()}')
     return surface.convert_alpha()
 
-def carregar_sprite(nome, largura=70, altura=140):
+def carregar_sprite(nome, largura=70, altura=140, flip= False):
     img = pg.transform.scale(load_image(nome), (largura, altura))
+    if (flip) :
+        img = pg.transform.flip(img, True, False)
     return img

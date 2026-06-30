@@ -1,6 +1,8 @@
 import pygame as pg
 import sys
 
+from classes import items
+from classes.items import Item
 from classes.utils import SCREENRECT, load_image, carregar_sprite
 
 from classes.personagem import Player
@@ -21,8 +23,12 @@ class Jogo:
                                  2: load_image("cenarios/cenario2.png").convert()}
 
 
-        self.dicionario_mapas_overlays = {0: load_image("cenarios/overlays/cenario0_overlay.png").convert_alpha(), 1: pg.Surface((980, 770), pg.SRCALPHA).convert_alpha(),
-                                 2: pg.Surface((980, 770), pg.SRCALPHA).convert_alpha()}
+        self.dicionario_mapas_overlays = {0: load_image("cenarios/overlays/cenario0_overlay.png").convert_alpha(), 1: load_image("cenarios/overlays/cenario1_overlay.png").convert_alpha(),
+                                 2: load_image("cenarios/overlays/cenario2_overlay.png").convert_alpha()}
+
+
+        item_bola = Item(carregar_sprite("coletaveis/bola_item.png", 70, 70), carregar_sprite("coletaveis/bola.png", 30, 30), (6, 6), 1)
+        self.items = [item_bola]
 
         self.tela.blit(self.dicionario_mapas[0], (0, 0))
 
@@ -44,12 +50,38 @@ class Jogo:
         proximo_movimento = 0
         cooldown_movimentos = 70
         cooldown_movimentos_diagonal = cooldown_movimentos * (2 ** 0.5)
+        cooldown_animacao = {
+            0: 70, # baixo
+            1: 110, # direita
+            2: 110, # esquerda
+            3: 70 # cima
+        }
 
-        Player.images = [carregar_sprite("chaves/chaves_parado.png"),
+        Player.images[0] = [carregar_sprite("chaves/chaves_parado.png"),
                          carregar_sprite("chaves/chaves_baixo_1.png"),
                          carregar_sprite("chaves/chaves_baixo_2.png"),
                          carregar_sprite("chaves/chaves_baixo_3.png"),
-                         carregar_sprite("chaves/chaves_baixo_4.png")]
+                         carregar_sprite("chaves/chaves_baixo_4.png")] # sprites do chaves pra baixo
+
+        Player.images[1] = [carregar_sprite("chaves/chaves_direita_3.png"),
+                         carregar_sprite("chaves/chaves_direita_1.png"),
+                         carregar_sprite("chaves/chaves_direita_2.png"),
+                         carregar_sprite("chaves/chaves_direita_3.png"),
+                         carregar_sprite("chaves/chaves_direita_4.png")]
+
+        Player.images[2] = [carregar_sprite("chaves/chaves_direita_3.png", 70, 140, True),
+                         carregar_sprite("chaves/chaves_direita_1.png", 70, 140, True),
+                         carregar_sprite("chaves/chaves_direita_2.png", 70, 140, True),
+                         carregar_sprite("chaves/chaves_direita_3.png", 70, 140, True),
+                         carregar_sprite("chaves/chaves_direita_4.png", 70, 140, True)]
+
+
+        Player.images[3] = [carregar_sprite("chaves/chaves_cima_parado.png"),
+                         carregar_sprite("chaves/chaves_cima_1.png"),
+                         carregar_sprite("chaves/chaves_cima_2.png"),
+                         carregar_sprite("chaves/chaves_cima_3.png"),
+                         carregar_sprite("chaves/chaves_cima_4.png")]
+
 
         all = pg.sprite.RenderUpdates()
 
@@ -78,7 +110,7 @@ class Jogo:
 
             if player.andando:
                 if tempo_atual >= player.proximo_frame:
-                    player.proximo_frame = tempo_atual + cooldown_movimentos
+                    player.proximo_frame = tempo_atual + cooldown_animacao[player.facing]
                     if player.frame == 7:
                         player.frame = 1
                     else:
@@ -89,15 +121,32 @@ class Jogo:
                     else:
                         frame = player.frame
 
-                    player.image = player.images[frame]
+                    player.image = player.images[player.facing][frame]
 
                 player.atualizar_movimento(self.cenario_atual)
 
-            all.clear(self.tela, self.dicionario_mapas.get(self.cenario_atual))
+            self.tela.blit(self.dicionario_mapas[self.cenario_atual], (0, 0))
 
-            dirty = all.draw(self.tela)
+            carregar_com_overlay = set()
 
-            self.tela.blit(self.dicionario_mapas_overlays.get(self.cenario_atual), (0, 0))
+            for item in self.items :
+                item_deve_aparecer = (not item.coletado) and (self.cenario_atual == item.cenario)
+                item_atras_do_jogador = item_deve_aparecer and item.posicao_matriz[0] < player.pos_matriz[0] + 1
+
+                if (item_atras_do_jogador):
+                  item.update()
+                  self.tela.blit(item.image, item.rect)
+                elif (item_deve_aparecer) :
+                    carregar_com_overlay.add(item)
+
+            all.draw(self.tela) # jogador
+
+            for item in carregar_com_overlay :
+              item.update()
+              self.tela.blit(item.image, item.rect)
+
+            self.tela.blit(self.dicionario_mapas_overlays[self.cenario_atual], (0, 0))
+
             pg.display.flip()
 
             self.clock.tick(60)
