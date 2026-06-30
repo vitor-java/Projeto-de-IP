@@ -27,8 +27,15 @@ class Jogo:
                                  2: load_image("cenarios/overlays/cenario2_overlay.png").convert_alpha()}
 
 
-        item_bola = Item(carregar_sprite("coletaveis/bola_item.png", 70, 70), carregar_sprite("coletaveis/bola.png", 30, 30), (6, 6), 1)
-        self.items = [item_bola]
+        item_bola = Item(carregar_sprite("coletaveis/bola_item.png", 70, 70), carregar_sprite("coletaveis/bola.png", 60, 60), (6, 6), 1)
+
+        item_marreta = Item(carregar_sprite("coletaveis/marreta_item.png", 70, 70),
+                         carregar_sprite("coletaveis/marreta.png", 60, 60), (2, 4), 0)
+
+        item_sanduiche = Item(carregar_sprite("coletaveis/sanduiche_item.png", 70, 70),
+                         carregar_sprite("coletaveis/sanduiche.png", 60, 60), (6, 10), 2)
+
+        self.items = [item_bola, item_marreta, item_sanduiche]
 
         self.tela.blit(self.dicionario_mapas[0], (0, 0))
 
@@ -129,15 +136,30 @@ class Jogo:
 
             carregar_com_overlay = set()
 
-            for item in self.items :
-                item_deve_aparecer = (not item.coletado) and (self.cenario_atual == item.cenario)
-                item_atras_do_jogador = item_deve_aparecer and item.posicao_matriz[0] < player.pos_matriz[0] + 1
+            for i in range(len(self.items)) :
+                item = self.items[i]
 
-                if (item_atras_do_jogador):
-                  item.update()
-                  self.tela.blit(item.image, item.rect)
-                elif (item_deve_aparecer) :
-                    carregar_com_overlay.add(item)
+                if (not item.coletado) :
+
+                    item_deve_aparecer = self.cenario_atual == item.cenario
+
+                    if (item_deve_aparecer) :
+                      if (not player.andando) :
+                        if (item.posicao_matriz == player.pos_matriz) :
+                          item.coletado = True
+
+                    item_atras_do_jogador = item_deve_aparecer and item.posicao_matriz[0] < player.pos_matriz[0] + 1
+
+                    if (item_atras_do_jogador):
+                       item.update()
+                       self.tela.blit(item.image, item.rect)
+                    elif (item_deve_aparecer) :
+                        carregar_com_overlay.add(item)
+
+                    self.tela.blit(item.icone_apagado, (20 + 70 * i, 20))
+                else :
+                    self.tela.blit(item.icone, (20 + 70 * i, 20))
+
 
             all.draw(self.tela) # jogador
 

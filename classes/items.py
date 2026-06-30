@@ -10,7 +10,11 @@ class Item(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self)
         self.coletado = False
         self.cenario = cenario
+
         self.icone = icone
+        self.icone_apagado = icone.copy()
+        self.icone_apagado.set_alpha(128)
+
         self.image = imagem
         self.rect = self.image.get_rect()
         self.posicao_matriz = posicao
