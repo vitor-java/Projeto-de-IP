@@ -106,6 +106,7 @@ O Chaves acorda com fome no Pátio do Barril e topa qualquer coisa por um sandu�
 | ← | Mover para esquerda |
 | ↓ | Mover para baixo |
 | → | Mover para direita |
+| E | Interagir |
 
 ---
 
