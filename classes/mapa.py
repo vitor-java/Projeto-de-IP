@@ -1,3 +1,5 @@
+from typing import Dict
+
 class matrizlogica:
     def __init__(self, nome, linhas=5, colunas=5):
         self.nome = nome
@@ -29,6 +31,8 @@ class matrizlogica:
 
 cenarios = {}
 
+matrizes: Dict[int, matrizlogica] = {}
+
 def get_posicao_na_matriz(pos_x, pos_y):
     pos_x *= 70
     pos_x += 35
@@ -53,56 +57,77 @@ def iniciar_cenarios() :
     #Inicia as colisoes do cenario 0
     cenario_0 = {
     (1, "*"),
-    (2, 1), (2, 3), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9),
-    (3, 1), (3, 3), (3, 4), (3, 5), (3, 10),
-    (4, 1), (4, 3), (4, 5), (4, 10), (4, 11), (4, 12),
-    (5, 1), (5, 3), (5, 5), (5, 13),
-    (6, 1), (6, 3), (6, 4), (6, 5), (6, 6), (6, 13),
-    (7, 1), (7, 3), (7, 5), (7, 6), (7, 12), (7, 13),
+    (2, 1), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9),
+    (3, 1), (3, 4), (3, 5),
+    (4, 1), (4, 5), (4, 10), (4, 11), (4, 12),
+    (5, 1), (5, 5),
+    (6, 1), (6, 4), (6, 5), (6, 6),
+    (7, 1), (7, 4), (7, 5), (7, 6), (7, 12),
     (8, 1), (8, 3), (8, 13),
-    (9, 1), (9, 13),
-    (10, 11), (10, 12),
+    (9, 1), (9, 13), (6,13),
+    (10, 11), (10, 12), (4, 13),
     ("*", 0)
     }
 
     #Inicia as colisoes do cenario 1
     cenario_1 = {
-        ("*", 1),(1, "*"),(2, "*"),
-        (3, 3),(3, 4),(3, 5),(3, 6),(3, 7),(3, 10),(3, 11),(3, 12),(3, 13),
-        (4, 3),(4, 4),(4, 5),(4, 6),(4, 7),(4, 10),(4, 11),(4, 12),(4, 13),
-        (5, 3),(5, 4),(5, 5),(5, 13),
-        (6, 3),(6, 4),(6, 5),(6, 13),
-        (7, 3),(7, 5),(7, 13),
-        (8, 13),
-        (9, 11),(9, 12),(9, 13),
-        (10, 11),(10, 12),(10, 13),
-        ("*", 0)
+        (5, 3), (5, 4), (6, 3), (6, 4), (2, "*"),
+        (3, 0), (3, 1), (3, 2), (3, 3),
+        (3, 7), (3, 8), (3, 9), (4, 10), (4, 11), (5, 11),
+        (6, 12), (7, 13),
+        (10, 0), (10, 1), (10, 2), (10, 3), (10, 4), (10, 5),
+        (10, 8), (10, 9), (10, 10), (10, 11), (10, 12), (10, 13),
+        ("*", 13), (9,12)
+    }
+
+    # GAMBIARRA ABAIXO. NÃO É COLISÃO
+    # estou reaproveitando o sistema de colisões porque funciona tranquilinho pra isso aq
+    bruxa_pisaveis = {
+        (10, 7), (9, 7), (9, 6), (9, 5), (9, 4), (8, 4), (8, 3), (8, 2), (9, 2),
+        (9, 1), (9, 0), (8, 0), (7, 0), (6, 0), (6, 1), (5, 1), (4, 1), (4, 2),
+        (4, 3), (4, 4), (3, 4), (3, 5), (3, 6), (4, 6), (4, 7), (4, 8), (5, 8),
+        (5, 9), (6, 9), (7, 9), (7, 8), (7, 7), (7, 6), (6, 6)
     }
 
     #Inicia as colisoes do cenario 2
     cenario_2 = {
         (1, "*"),
-        (2, 1),(2, 2),(2, 3),(2, 4),(2, 5),(2, 6),(2, 7),(2, 8),(2, 10),(2, 11),(2, 12),
-        (3, 1),(3, 2),(3, 3),(3, 10),(3, 11),(3, 12)
-        (4, 1),(4, 2),(4, 3),(4, 8),(4, 9),(4, 11),(4, 12),
-        (5, 1),(5, 2),(5, 3),
-        (6, 1),(6, 2),(6, 3),
-        (7, 1),(7, 2),(7, 3),(7, 5),(7, 6),(7, 8),
-        (8, 1),(8, 6),(8, 7),(8, 8),
-        (9, 1),
-        (10, 11),(10, 12),
-        ("*",0),
-        ("*",13)
+        (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8),
+        (3, 1), (3, 2), (3, 3), (3, 7), (3, 8), (3, 10),
+        (4, 7), (4, 8), (4, 9), (4, 11), (4, 12),
+        (5, 11),
+        (6, 12),
+        (8, 12),
+        (9, 12),
+        (10, 12),
+        (10, 11),
+        (9, 1), (8, 1), (7, 2), (6, 3), (5, 3), (4, 3),
+        (6, 6), (6, 7), (6, 8),
+        (7, 6), (7, 7), (7, 8),
+        (8, 6), (8, 7), (8, 8),
+
+        ("*", 0),
+        ("*", 13)
     }
     
     matriz_cenario_0 = matrizlogica("Cenário 0", 11, 14)
-    matriz_cenario_1 = matrizlogica("Cenário 0", 11, 14)
-    matriz_cenario_2 = matrizlogica("Cenário 0", 11, 14)
+    matriz_cenario_1 = matrizlogica("Cenário 1", 11, 14)
+
+    matriz_bruxa_pisaveis = matrizlogica("Bruxa Pisáveis", 11, 14)
+
+    matriz_cenario_2 = matrizlogica("Cenário 2", 11, 14)
     
     converter_set_para_matriz(cenario_0, matriz_cenario_0)
     converter_set_para_matriz(cenario_1, matriz_cenario_1)
     converter_set_para_matriz(cenario_2, matriz_cenario_2)
 
+    converter_set_para_matriz(bruxa_pisaveis, matriz_bruxa_pisaveis)
+
     cenarios[0] = matriz_cenario_0.dados
     cenarios[1] = matriz_cenario_1.dados
+    cenarios[3] = matriz_bruxa_pisaveis.dados # <--- gambiarra aqui. não é colisão
     cenarios[2] = matriz_cenario_2.dados
+
+    matrizes[0] = matriz_cenario_0
+    matrizes[1] = matriz_cenario_1
+    matrizes[2] = matriz_cenario_2

@@ -1,34 +1,63 @@
 import pygame as pg
-from typing import List
+from typing import Dict, List
 from classes.utils import SCREENRECT
 from classes.mapa import get_posicao_na_matriz, checar_colisao
 
 
+def get_facing(direcao_v, direcao_h) :
+    if (direcao_h == 1):
+        return 1
+    elif (direcao_h == -1):
+        return 2
+    elif (direcao_v == 1) :
+        return 0
+    elif (direcao_v == -1) :
+        return 3
+    return 0
 
 class Player(pg.sprite.Sprite):
 
     bounce = 24
-    images: List[pg.Surface] = []
+    images: Dict[int, List[pg.Surface]] = {
+        0: [],
+        1: [],
+        2: [],
+        3: []
+    }
 
     def __init__(self, *groups):
         pg.sprite.Sprite.__init__(self, *groups)
         self.proximocenario = -1
-        self.image = self.images[0]
-        self.rect = self.image.get_rect()
 
         self.pos_matriz = (7, 7)
-        self.rect.center = get_posicao_na_matriz(7, 7)
 
         self.prox_cenario = -1
         self.andando = False
+        self.pode_andar = True
         self.proxima_pos = (0, 0)
         self.proximo_frame = 0
         self.frame = 0
 
+        self.acabou = False
+
         self.reloading = 0
-        self.facing = -1    
+        self.facing = 0 #
+        # 0 -> baixo
+        # 1 -> direita
+        # 2 -> esquerda
+        # 3 -> cima
+
+        self.explodido = False
+
+        self.image = self.images[self.facing][0]
+        self.rect = self.image.get_rect()
+        self.rect.center = get_posicao_na_matriz(7, 7)
+
+
 
     def move(self, direcao_v, direcao_h, cenario):
+        if (direcao_v == 0 and direcao_h == 0) :
+            return
         if not self.andando:
             suposta_prox_pos = (self.rect.centerx + 70 * direcao_h, self.rect.centery + 70 * direcao_v)
             proximo_rect = self.rect.copy()
@@ -38,35 +67,46 @@ class Player(pg.sprite.Sprite):
                 y, x = pos_atual[0], pos_atual[1]
                 yi, xi = y + direcao_v, x + direcao_h
 
-                if cenario == 0 and (yi, xi) == (3, 10): # testando portas
-                    self.proximocenario = 1
-                    self.teleportar(9, 7)
-                    return
-
+                nova_facing = get_facing(direcao_v, direcao_h)
+                if (nova_facing != self.facing) : # troca de direções na animação
+                    self.facing = nova_facing
+                    self.frame = 0
+                    self.image = self.images[nova_facing][0]
 
                 if direcao_h != 0 and direcao_v != 0:
                     colisao = checar_colisao(y, xi, cenario) or checar_colisao(yi, x, cenario) or checar_colisao(yi, xi, cenario)
                 else :
                     colisao = checar_colisao(yi, xi, cenario)
                 if not colisao:
+
                     self.pos_matriz = (yi, xi)
                     self.proxima_pos = suposta_prox_pos
                     self.andando = True
 
-    def teleportar(self, y, x):
+
+
+    def teleportar(self, y, x, facing):
         self.frame = 0
+        self.image = self.images[facing][0]
+        self.facing = facing
         self.andando = False
         self.pos_matriz = (y, x)
         xi, yi = get_posicao_na_matriz(x, y)
         self.rect.center = (xi, yi)
 
-    def atualizar_movimento(self):
+    def atualizar_movimento(self, cenario):
         if (not self.andando):
             return
 
         velocidade = 2
         proxima_pos_x = self.proxima_pos[0]
         proxima_pos_y = self.proxima_pos[1]
+
+        y, x = self.pos_matriz[0], self.pos_matriz[1] # matriz
+
+        if (cenario == 1 and not self.explodido):
+            if not checar_colisao(y, x, 3):
+                self.explodido = True
 
         vx = 0
         vy = 0
@@ -85,5 +125,26 @@ class Player(pg.sprite.Sprite):
         self.rect = self.rect.clamp(SCREENRECT)
 
         if (self.rect.center == self.proxima_pos):
+
+            if cenario == 1 and (self.pos_matriz == (10, 6) or self.pos_matriz == (10, 7)):  # testando portas
+                self.proximocenario = 0
+                self.teleportar(3, 9, 2)
+                return
+
+            if cenario == 2 and self.pos_matriz[0] == 10:  # testando portas
+                self.proximocenario = 0
+                self.teleportar(5, 12, 2)
+                return
+
+            if cenario == 0 and self.pos_matriz == (3, 10):  # testando portas
+                self.proximocenario = 1
+                self.teleportar(9, 7, 3)
+                return
+
+            if cenario == 0 and self.pos_matriz == (5, 13):  # testando portas
+                self.proximocenario = 2
+                self.teleportar(9, 7, 3)
+                return
+
             self.andando = False
-            self.image = self.images[0]
+            self.image = self.images[self.facing][0]

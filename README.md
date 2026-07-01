@@ -63,9 +63,9 @@ python3 -m main
 
 | Item / Coletável | Sprite | Descrição e Utilidade |
 | :---: | :---: | :--- |
-| Bola Quadrada | <img src="data/coletaveis/bola.jpeg" width="40px"> | Item perdido pelo Quico. Chaves precisa recuperá-la dentro da Casa da Bruxa do 71, desviando do Gato Satanás, para dar início à negociação pelo sanduíche. |
-| Marreta Biônica | <img src="data/coletaveis/marreta.jpeg" width="40px"> | Pertence ao Chapolin Colorado e está caída perto do Tanque de Lavar Roupas. Ao ser usada, invoca o Chapolin em um desfecho épico. |
-| Sanduíche de Presunto | <img src="data/coletaveis/sanduiche.jpeg" width="40px"> | O objetivo final da missão. Cai da janela da Dona Florinda após o Chapolin bater na parede. Coletar este item encerra o jogo com a tela de vitória. |
+| Bola Quadrada | <img src="data/coletaveis/bola.png" width="40px"> | Item perdido pelo Quico. Chaves precisa recuperá-la dentro da Casa da Bruxa do 71, desviando do Gato Satanás, para dar início à negociação pelo sanduíche. |
+| Marreta Biônica | <img src="data/coletaveis/marreta.png" width="40px"> | Pertence ao Chapolin Colorado e está caída perto do Tanque de Lavar Roupas. Ao ser usada, invoca o Chapolin em um desfecho épico. |
+| Sanduíche de Presunto | <img src="data/coletaveis/sanduiche.png" width="40px"> | O objetivo final da missão. Cai da janela da Dona Florinda após o Chapolin bater na parede. Coletar este item encerra o jogo com a tela de vitória. |
 
 ---
 
@@ -75,10 +75,9 @@ python3 -m main
 | Personagem | Sprite | Descrição |
 | :---: | :---: | :--- |
 | Chaves | <img src="data/chaves/chaves_parado.png" width="45px"> | Personagem principal e jogável. Está com fome e precisa encontrar um sanduíche de presunto a todo custo. |
-| Quico | <img src="data/quico/4.png" width="45px"> | NPC que inicia a missão prometendo um sanduíche em troca da Bola Quadrada.
-| Seu Madruga | <img src="data/madruga/1.png" width="45px"> | NPC que fornece a pista crucial: revela que a Bola Quadrada caiu na janela da Bruxa do 71. |
-| Gato Satanás | | Inimigo que patrulha o interior da Casa da Bruxa. Encostar nele reseta o Chaves para o início da sala. |
-| Chapolin Colorado | <img src="data/chapolim/3.png" width="45px"> | Invocado pela Marreta Biônica no ato final. Tenta ajudar, bate na parede sem querer e derruba o sanduíche da janela da Dona Florinda. |
+| Quico | <img src="data/quico/quico.png" width="45px"> | NPC que permite a passagem pela escada em troca da bola quadrada. |
+| Gato Satanás | <img src="data/gato/gatofdp1.png" width="45px"> | Inimigo que patrulha o interior da Casa da Bruxa. Pisar em uma posição errada na casa da bruxa explode o Chaves. |
+| Chapolin Colorado | <img src="data/chapolim/chapolim.png" width="45px"> | NPC que permite que o Chaves obtenha o sanduíche em troca da Marreta Biônica. |
 
 ---
 
@@ -89,7 +88,7 @@ python3 -m main
 
 ### História
 
-O Chaves acorda com fome no Pátio do Barril e topa qualquer coisa por um sanduíche de presunto. O Quico faz uma proposta: ele consegue o sanduíche se o Chaves achar a Bola Quadrada. A busca leva o Chaves pelo Pátio da Fonte, para dentro da assustadora Casa da Bruxa do 71 e de volta ao ponto de partida, num desfecho épico que só o Chapolin Colorado poderia protagonizar.
+O Chaves acorda com fome no Pátio do Barril e topa qualquer coisa por um sanduíche de presunto. Para conseguir isso, ele precisa obter alguns itens (bola quadrada e marreta biônica).
 
 ### Mecânicas de Jogo
 
@@ -97,17 +96,17 @@ O Chaves acorda com fome no Pátio do Barril e topa qualquer coisa por um sandu�
 - Colisão com paredes, móveis e limites de mapa.
 - Coleta de itens.
 - Diálogos com NPCs acionados por proximidade.
-- Gato Satanás com patrulha autônoma.
+- Gato Satanás com sistema de explosão.
 
 ### Controles
 
 | Tecla | Ação |
 | :---: | :--- |
-| W | Mover para cima |
-| A | Mover para esquerda |
-| S | Mover para baixo |
-| D | Mover para direita |
-| E | Interagir|
+| ↑ | Mover para cima |
+| ← | Mover para esquerda |
+| ↓ | Mover para baixo |
+| → | Mover para direita |
+| E | Interagir |
 
 ---
 
@@ -117,31 +116,61 @@ O Chaves acorda com fome no Pátio do Barril e topa qualquer coisa por um sandu�
 ```text
 Projeto-de-IP
 ├── classes
+│   ├── gif_overlay.py
+│   ├── items.py
 │   ├── jogo.py
 │   ├── mapa.py
+│   ├── npc.py
 │   ├── personagem.py
 │   └── utils.py
 ├── data
+│   ├── balao_de_fala
+│   │   ├── chapolin.png
+│   │   └── quico.png
 │   ├── cenarios
 │   │   ├── cenario0.png
 │   │   ├── cenario1.png
-│   │   └── cenario2.png
+│   │   ├── cenario2.png
+│   │   └── overlays
+│   │       ├── cenario0_overlay.png
+│   │       ├── cenario1_overlay.png
+│   │       ├── cenario2_overlay.png
+│   │       └── final.png
 │   ├── chapolim
-│   │   └── 3.png
+│   │   ├── chapolim.png
+│   │   └── chapolim_outline.png
 │   ├── chaves
 │   │   ├── chaves_baixo_1.png
 │   │   ├── chaves_baixo_2.png
 │   │   ├── chaves_baixo_3.png
 │   │   ├── chaves_baixo_4.png
+│   │   ├── chaves_cima_1.png
+│   │   ├── chaves_cima_2.png
+│   │   ├── chaves_cima_3.png
+│   │   ├── chaves_cima_4.png
+│   │   ├── chaves_cima_parado.png
+│   │   ├── chaves_direita_1.png
+│   │   ├── chaves_direita_2.png
+│   │   ├── chaves_direita_3.png
+│   │   ├── chaves_direita_4.png
+│   │   ├── chaves_direita_parado.png
 │   │   └── chaves_parado.png
 │   ├── coletaveis
-│   │   ├── bola.jpeg
-│   │   ├── marreta.jpeg
-│   │   └── sanduiche.jpeg
+│   │   ├── bola.png
+│   │   ├── bola_item.png
+│   │   ├── marreta.png
+│   │   ├── marreta_item.png
+│   │   ├── sanduiche.png
+│   │   └── sanduiche_item.png
+│   ├── gato
+│   │   ├── exp0.png ... exp19.png   (20 frames de expressão)
+│   │   ├── gatofdp1.png
+│   │   └── gatofdp2.png
 │   ├── madruga
 │   │   └── 1.png
 │   └── quico
-│       └── 4.png
+│       ├── quico.png
+│       └── quico_outline.png
 ├── .gitignore
 ├── .mailmap
 ├── main.py
