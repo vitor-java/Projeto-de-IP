@@ -76,7 +76,7 @@ python3 -m main
 | :---: | :---: | :--- |
 | Chaves | <img src="data/chaves/chaves_parado.png" width="45px"> | Personagem principal e jogável. Está com fome e precisa encontrar um sanduíche de presunto a todo custo. |
 | Quico | <img src="data/quico/quico.png" width="45px"> | NPC que permite a passagem pela escada em troca da bola quadrada. |
-| Gato Satanás | <img src="data/gato/gatofdp1.png" width="45px"> | | Inimigo que patrulha o interior da Casa da Bruxa. Pisar em uma posição errada na casa da bruxa explode o Chaves. |
+| Gato Satanás | <img src="data/gato/gatofdp1.png" width="45px"> | Inimigo que patrulha o interior da Casa da Bruxa. Pisar em uma posição errada na casa da bruxa explode o Chaves. |
 | Chapolin Colorado | <img src="data/chapolim/chapolim.png" width="45px"> | NPC que permite que o Chaves obtenha o sanduíche em troca da Marreta Biônica. |
 
 ---
