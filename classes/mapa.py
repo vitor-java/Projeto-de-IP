@@ -1,3 +1,5 @@
+from typing import Dict
+
 class matrizlogica:
     def __init__(self, nome, linhas=5, colunas=5):
         self.nome = nome
@@ -28,6 +30,8 @@ class matrizlogica:
             print(f"[{self.nome}] Elemento na posição ({linha}, {coluna}) alterado para {valor}.")
 
 cenarios = {}
+
+matrizes: Dict[int, matrizlogica] = {}
 
 def get_posicao_na_matriz(pos_x, pos_y):
     pos_x *= 70
@@ -123,3 +127,7 @@ def iniciar_cenarios() :
     cenarios[1] = matriz_cenario_1.dados
     cenarios[3] = matriz_bruxa_pisaveis.dados # <--- gambiarra aqui. não é colisão
     cenarios[2] = matriz_cenario_2.dados
+
+    matrizes[0] = matriz_cenario_0
+    matrizes[1] = matriz_cenario_1
+    matrizes[2] = matriz_cenario_2

@@ -33,9 +33,12 @@ class Player(pg.sprite.Sprite):
 
         self.prox_cenario = -1
         self.andando = False
+        self.pode_andar = True
         self.proxima_pos = (0, 0)
         self.proximo_frame = 0
         self.frame = 0
+
+        self.acabou = False
 
         self.reloading = 0
         self.facing = 0 #
