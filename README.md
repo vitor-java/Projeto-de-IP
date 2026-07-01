@@ -88,7 +88,7 @@ python3 -m main
 
 ### História
 
-O Chaves acorda com fome no Pátio do Barril e topa qualquer coisa por um sanduíche de presunto. O Quico faz uma proposta: ele consegue o sanduíche se o Chaves achar a Bola Quadrada. A busca leva o Chaves pelo Pátio da Fonte, para dentro da assustadora Casa da Bruxa do 71 e de volta ao ponto de partida, num desfecho épico que só o Chapolin Colorado poderia protagonizar.
+O Chaves acorda com fome no Pátio do Barril e topa qualquer coisa por um sanduíche de presunto. Para conseguir isso, ele precisa obter alguns itens (bola quadrada e marreta biônica).
 
 ### Mecânicas de Jogo
 
