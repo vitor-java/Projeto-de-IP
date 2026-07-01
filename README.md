@@ -63,9 +63,9 @@ python3 -m main
 
 | Item / Coletável | Sprite | Descrição e Utilidade |
 | :---: | :---: | :--- |
-| Bola Quadrada | <img src="data/coletaveis/bola.jpeg" width="40px"> | Item perdido pelo Quico. Chaves precisa recuperá-la dentro da Casa da Bruxa do 71, desviando do Gato Satanás, para dar início à negociação pelo sanduíche. |
-| Marreta Biônica | <img src="data/coletaveis/marreta.jpeg" width="40px"> | Pertence ao Chapolin Colorado e está caída perto do Tanque de Lavar Roupas. Ao ser usada, invoca o Chapolin em um desfecho épico. |
-| Sanduíche de Presunto | <img src="data/coletaveis/sanduiche.jpeg" width="40px"> | O objetivo final da missão. Cai da janela da Dona Florinda após o Chapolin bater na parede. Coletar este item encerra o jogo com a tela de vitória. |
+| Bola Quadrada | <img src="data/coletaveis/bola.png" width="40px"> | Item perdido pelo Quico. Chaves precisa recuperá-la dentro da Casa da Bruxa do 71, desviando do Gato Satanás, para dar início à negociação pelo sanduíche. |
+| Marreta Biônica | <img src="data/coletaveis/marreta.png" width="40px"> | Pertence ao Chapolin Colorado e está caída perto do Tanque de Lavar Roupas. Ao ser usada, invoca o Chapolin em um desfecho épico. |
+| Sanduíche de Presunto | <img src="data/coletaveis/sanduiche.png" width="40px"> | O objetivo final da missão. Cai da janela da Dona Florinda após o Chapolin bater na parede. Coletar este item encerra o jogo com a tela de vitória. |
 
 ---
 
